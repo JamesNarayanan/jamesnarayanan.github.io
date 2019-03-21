@@ -1,16 +1,54 @@
 <html>
 	<head>
 		<title>James Narayanan</title>
+		<link href="https://fonts.googleapis.com/css?family=Anonymous+Pro|Major+Mono+Display" rel="stylesheet">
 	</head>
 	<style>
 		body {
 			background-color: cyan;
 			text-align: center;
-			font-size: 2rem;
+			font-family: 'Anonymous Pro', Courier, monospace;
+		}
+		#name {
+			font-family: 'Major Mono Display';
+			color: white;
+			font-size: 8rem;
+		}
+		#name h1 {
+			margin: 0 50px;
+		}
+		nav {
+			background: rgba(0,0,0,.2);
+			padding: 20px;
+			margin: 20px;
+		}
+		nav a {
+			margin: 0 10px;
+			padding: 5px 10px;
+			border: 1px solid black;
+			font-size: 2em;
+		}
+		nav a:hover {
+			background-color: rgba(0,0,0,.2);
+		}
+		a {
+			text-decoration: none;
+			color: inherit;
 		}
 	</style>
 	<body>
-		<h1>James Narayanan</h1>
-		<a href="https://github.com/JamesNarayanan">My Github</a>
+		<div id="name">
+			<h1>James</h1>
+			<h1>Narayanan</h1>
+		</div>
+		<nav>
+			<a href="https://github.com/JamesNarayanan" style="font-size: 4em;">My Github</a>
+			<br/><br/><br/>
+			
+			<a href="https://github.com/JamesNarayanan/Whales">Whales</a>
+			<a href="https://github.com/JamesNarayanan/Planets">Planets</a>
+			<a href="https://github.com/JamesNarayanan/weather">Weather</a>
+			<a href="https://github.com/JamesNarayanan/JavaFX">JavaFX</a>
+		</nav>
 	</body>
 </html>
