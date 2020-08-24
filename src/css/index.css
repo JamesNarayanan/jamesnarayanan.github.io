@@ -1,0 +1,21 @@
+@import url("https://fonts.googleapis.com/css2?family=Bungee+Shade&family=Montserrat:wght@400;800&display=swap");
+
+:root {
+	--bg: #111;
+	--title: #0ff;
+	--link: #14ff7e;
+	--main-text: #fff;
+}
+
+body {
+	background-color: var(--bg);
+	color: var(--main-text);
+	font-family: "Montserrat", sans-serif;
+}
+
+a {
+	color: var(--link);
+}
+a:hover {
+	color: var(--link);
+}
