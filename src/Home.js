@@ -1,33 +1,34 @@
-import React from "react";
+import React, {useState} from "react";
 import "./css/Home.css";
-import {Row, Col} from "react-bootstrap";
+import reactLogo from "./img/reactLogo.svg";
 
 function Home() {
+	const [scrollY, setScrollY] = useState(0);
+	window.addEventListener("scroll", () => {
+		setScrollY(window.pageYOffset);
+	});
+
 	return (
-		<>
-			<div className="w-100 p-3 text-center">
-				<h1 className="title">James Narayanan</h1>
-				<h2 className="subtitle">Home Site</h2>
+		<div style={{height: "500vh"}}>
+			<div
+				className="position-fixed w-100 text-dark text-center"
+				style={{backgroundColor: "cyan", height: "100vh"}}
+			>
+				<img
+					src={reactLogo}
+					alt="react logo"
+					className=""
+					style={{
+						marginTop: "10%",
+						maxWidth: "250px",
+						transform: `rotate(${30 + scrollY / 5}deg)`
+					}}
+				/>
+				<h1 className="" style={{marginTop: "10%", fontSize: "5rem"}}>
+					React
+				</h1>
 			</div>
-			<div className="text-center">
-				<h2 className="subtitle">
-					<a href="https://github.com/JamesNarayanan">Github</a>
-				</h2>
-				<Row className="w-75 mx-auto" style={{fontSize: "1.5rem"}}>
-					<Col>
-						<a href="https://roboguide.tk">RoboGuide</a>
-					</Col>
-					<Col>
-						<a href="https://github.com/Team41Robotics/2020-Robot-Code">
-							2020 FRC Robot Code
-						</a>
-					</Col>
-					<Col>
-						<a href="https://jamesnarayanan.github.io/weather">Weather</a>
-					</Col>
-				</Row>
-			</div>
-		</>
+		</div>
 	);
 }
 
