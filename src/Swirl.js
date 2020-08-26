@@ -32,7 +32,7 @@ function Swirl() {
 		},
 		{
 			name: "Java",
-			color: "#ff3030",
+			color: "#ff4444",
 			icon: javaLogo,
 			projects: [
 				{
@@ -44,7 +44,7 @@ function Swirl() {
 		},
 		{
 			name: "Python",
-			color: "yellow",
+			color: "#fe0",
 			icon: pythonLogo,
 			projects: [
 				{
@@ -70,6 +70,9 @@ function Swirl() {
 
 	/** Radii of swirl element motion. x is in vw, y is in px */
 	const radii = {x: 30, y: 250};
+	const onLogoClick = i => {
+		window.scrollTo({top: (pixPerRotate / 2) * i, behavior: "smooth"});
+	};
 	for (let i = 0; i < swirlElementInfo.length; i++) {
 		let angle = scrollY * (180 / pixPerRotate) + 90 - 90 * i;
 		let relativeAngle = angle % 360;
@@ -95,6 +98,8 @@ function Swirl() {
 				opacity={opacity}
 				inFocus={inFocus}
 				projects={swirlElementInfo[i].projects}
+				number={i}
+				onLogoClick={onLogoClick}
 			/>
 		);
 	}
@@ -102,6 +107,8 @@ function Swirl() {
 	// Makes background overflow color match background color of the rest of the screen
 	document.documentElement.style.backgroundColor =
 		swirlElementInfo[currentSwirlEl].color;
+	// This should be the same length of time as the background transition
+	document.documentElement.style.transition = "0.5s";
 
 	return (
 		<>
@@ -119,7 +126,7 @@ function Swirl() {
 				<div
 					className="position-fixed w-100 text-dark"
 					style={{
-						transition: "0.5s",
+						transition: `0.5s`,
 						backgroundColor: swirlElementInfo[currentSwirlEl].color,
 						height: "100vh"
 					}}
@@ -133,6 +140,18 @@ function Swirl() {
 					<h1>
 						<a href="https://github.com/JamesNarayanan">James Narayanan</a>
 					</h1>
+				</div>
+				<div
+					className="position-fixed text-dark"
+					style={{
+						bottom: "5px",
+						left: "50vw",
+						transform: "translate(-50%, 0)",
+						transition: "0.25s",
+						opacity: scrollY < 500 ? 1 : 0
+					}}
+				>
+					<h2>Scroll down for more!</h2>
 				</div>
 			</div>
 		</>
