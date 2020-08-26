@@ -6,6 +6,7 @@ import reactLogo from "./img/reactLogo.svg";
 import pythonLogo from "./img/pythonLogo.svg";
 import javaLogo from "./img/javaLogo.svg";
 import cppLogo from "./img/cppLogo.svg";
+import {Helmet} from "react-helmet";
 
 function Swirl() {
 	const [scrollY, setScrollY] = useState(0);
@@ -23,22 +24,45 @@ function Swirl() {
 		{
 			name: "React",
 			color: "cyan",
-			icon: reactLogo
-		},
-		{
-			name: "Python",
-			color: "yellow",
-			icon: pythonLogo
+			icon: reactLogo,
+			projects: [
+				{name: "RoboGuide", link: "https://roboguide.tk"},
+				{name: "Weather", link: "https://jamesnarayanan.github.io/weather"}
+			]
 		},
 		{
 			name: "Java",
 			color: "#ff3030",
-			icon: javaLogo
+			icon: javaLogo,
+			projects: [
+				{
+					name: "2020 FIRST Robotics Code",
+					link: "https://github.com/Team41Robotics/2020-Robot-Code"
+				},
+				{name: "JavaFX Games", link: "https://github.com/JamesNarayanan/JavaFX"}
+			]
+		},
+		{
+			name: "Python",
+			color: "yellow",
+			icon: pythonLogo,
+			projects: [
+				{
+					name: "Tape Detector",
+					link: "https://github.com/Team41Robotics/tape_detector/"
+				}
+			]
 		},
 		{
 			name: "C++",
 			color: "#6196cb",
-			icon: cppLogo
+			icon: cppLogo,
+			projects: [
+				{
+					name: "2019 FIRST Robotics Code",
+					link: "https://github.com/Team41Robotics/2019-Robot-Code"
+				}
+			]
 		}
 	];
 	var currentSwirlEl = 0;
@@ -70,6 +94,7 @@ function Swirl() {
 				top={top}
 				opacity={opacity}
 				inFocus={inFocus}
+				projects={swirlElementInfo[i].projects}
 			/>
 		);
 	}
@@ -79,32 +104,38 @@ function Swirl() {
 		swirlElementInfo[currentSwirlEl].color;
 
 	return (
-		<div
-			style={{
-				height: `calc(${
-					(pixPerRotate / 2) * (swirlElements.length - 1)
-				}px + 100vh)`
-			}}
-		>
+		<>
+			<Helmet>
+				<title>James Narayanan</title>
+			</Helmet>
 			<div
-				className="position-fixed w-100 text-dark"
+				id="longSwirl"
 				style={{
-					transition: "0.5s",
-					backgroundColor: swirlElementInfo[currentSwirlEl].color,
-					height: "100vh"
+					height: `calc(${
+						(pixPerRotate / 2) * (swirlElements.length - 1)
+					}px + 100vh)`
 				}}
 			>
-				{swirlElements}
+				<div
+					className="position-fixed w-100 text-dark"
+					style={{
+						transition: "0.5s",
+						backgroundColor: swirlElementInfo[currentSwirlEl].color,
+						height: "100vh"
+					}}
+				>
+					{swirlElements}
+				</div>
+				<div
+					className="position-fixed text-dark"
+					style={{top: "5px", left: "10px", fontFamily: "Bungee Shade"}}
+				>
+					<h1>
+						<a href="https://github.com/JamesNarayanan">James Narayanan</a>
+					</h1>
+				</div>
 			</div>
-			<div
-				className="position-fixed text-dark"
-				style={{top: "5px", left: "10px", fontFamily: "Bungee Shade"}}
-			>
-				<h1>
-					<a href="https://github.com/JamesNarayanan">James Narayanan</a>
-				</h1>
-			</div>
-		</div>
+		</>
 	);
 }
 
