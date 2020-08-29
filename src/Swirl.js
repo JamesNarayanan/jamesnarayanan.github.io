@@ -1,11 +1,8 @@
 import React, {useState} from "react";
 import "./css/Swirl.css";
 import SwirlElement from "./components/SwirlElement";
+import SwirlElementInfo from "./components/SwirlElementInfo";
 
-import reactLogo from "./img/reactLogo.svg";
-import pythonLogo from "./img/pythonLogo.svg";
-import javaLogo from "./img/javaLogo.svg";
-import cppLogo from "./img/cppLogo.svg";
 import {Helmet} from "react-helmet";
 
 function Swirl() {
@@ -26,51 +23,6 @@ function Swirl() {
 	/** The number pixels of scroll that correspond to one half rotation */
 	const pixPerRotate = 2000;
 
-	const swirlElementInfo = [
-		{
-			name: "React",
-			color: "cyan",
-			icon: reactLogo,
-			projects: [
-				{name: "RoboGuide", link: "https://roboguide.tk"},
-				{name: "Weather", link: "https://jamesnarayanan.github.io/weather"}
-			]
-		},
-		{
-			name: "Java",
-			color: "#ff4444",
-			icon: javaLogo,
-			projects: [
-				{
-					name: "2020 FIRST Robotics Code",
-					link: "https://github.com/Team41Robotics/2020-Robot-Code"
-				},
-				{name: "JavaFX Games", link: "https://github.com/JamesNarayanan/JavaFX"}
-			]
-		},
-		{
-			name: "Python",
-			color: "#fe0",
-			icon: pythonLogo,
-			projects: [
-				{
-					name: "Tape Detector",
-					link: "https://github.com/Team41Robotics/tape_detector/"
-				}
-			]
-		},
-		{
-			name: "C++",
-			color: "#6196cb",
-			icon: cppLogo,
-			projects: [
-				{
-					name: "2019 FIRST Robotics Code",
-					link: "https://github.com/Team41Robotics/2019-Robot-Code"
-				}
-			]
-		}
-	];
 	var currentSwirlEl = 0;
 	var swirlElements = [];
 
@@ -88,7 +40,7 @@ function Swirl() {
 	const onLogoClick = i => {
 		window.scrollTo({top: (pixPerRotate / 2) * i, behavior: "smooth"});
 	};
-	for (let i = 0; i < swirlElementInfo.length; i++) {
+	for (let i = 0; i < SwirlElementInfo.length; i++) {
 		let angle = scrollY * (180 / pixPerRotate) + 90 - 90 * i;
 		let relativeAngle = angle % 360;
 		let left = `calc(50vw - ${radii.x}vw * ${Math.cos(degToRad(angle))})`;
@@ -107,13 +59,13 @@ function Swirl() {
 
 		swirlElements.push(
 			<SwirlElement
-				name={swirlElementInfo[i].name}
-				icon={swirlElementInfo[i].icon}
+				name={SwirlElementInfo[i].name}
+				icon={SwirlElementInfo[i].icon}
 				left={left}
 				top={top}
 				opacity={opacity}
 				inFocus={inFocus}
-				projects={swirlElementInfo[i].projects}
+				projects={SwirlElementInfo[i].projects}
 				number={i}
 				screenWidth={screenWidth}
 				onLogoClick={onLogoClick}
@@ -123,7 +75,7 @@ function Swirl() {
 
 	// Makes background overflow color match background color of the rest of the screen
 	document.documentElement.style.backgroundColor =
-		swirlElementInfo[currentSwirlEl].color;
+		SwirlElementInfo[currentSwirlEl].color;
 	// This should be the same length of time as the background transition
 	document.documentElement.style.transition = "0.5s";
 
@@ -144,7 +96,7 @@ function Swirl() {
 					className="position-fixed w-100 text-dark"
 					style={{
 						transition: `0.5s`,
-						backgroundColor: swirlElementInfo[currentSwirlEl].color,
+						backgroundColor: SwirlElementInfo[currentSwirlEl].color,
 						height: "100vh"
 					}}
 				>
