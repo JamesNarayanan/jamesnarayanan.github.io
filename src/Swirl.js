@@ -13,6 +13,12 @@ function Swirl() {
 	window.addEventListener("scroll", () => {
 		setScrollY(window.pageYOffset);
 	});
+	const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+	const [screenHeight, setScreenHeight] = useState(window.innerHeight);
+	window.addEventListener("resize", () => {
+		setScreenWidth(window.innerWidth);
+		setScreenHeight(window.innerHeight);
+	});
 
 	/** Converts inputted angle from degrees to radians */
 	const degToRad = angle => angle * (Math.PI / 180);
@@ -68,8 +74,17 @@ function Swirl() {
 	var currentSwirlEl = 0;
 	var swirlElements = [];
 
-	/** Radii of swirl element motion. x is in vw, y is in px */
-	const radii = {x: 30, y: 250};
+	/** Radii of swirl element motion. x is in vw, y is in vh.
+	 * <p>
+	 * x radius shrinks as the screen widens.
+	 * y radius grows as the screen widens.
+	 */
+	var radii = {
+		x: 35 - screenWidth / 400,
+		y: 12 + screenHeight / 100
+	};
+	if (radii.y > 25) radii.y = 25;
+
 	const onLogoClick = i => {
 		window.scrollTo({top: (pixPerRotate / 2) * i, behavior: "smooth"});
 	};
@@ -77,14 +92,15 @@ function Swirl() {
 		let angle = scrollY * (180 / pixPerRotate) + 90 - 90 * i;
 		let relativeAngle = angle % 360;
 		let left = `calc(50vw - ${radii.x}vw * ${Math.cos(degToRad(angle))})`;
-		let top = `calc(50vh - ${radii.y * Math.sin(degToRad(angle))}px)`;
-		/** How far in degrees past the horizontal the icons show up before fading away */
+		let top = `calc(50vh - ${radii.y}vh * ${Math.sin(degToRad(angle))})`;
+		/** How far in degrees past the horizontal the icons will continue to fade before disapeearing entirely */
 		let fadeExtension = 45;
 		let opacity = `${
 			angle >= -fadeExtension && angle <= 180 + fadeExtension
 				? 1 - Math.abs(90 - relativeAngle) / (90 + fadeExtension)
 				: 0
 		}`;
+		/** An icon is in focus if it's in the 90° closest to the top of the screen */
 		let inFocus = relativeAngle >= 45 && relativeAngle < 135;
 
 		currentSwirlEl = inFocus ? i : currentSwirlEl;
@@ -99,6 +115,7 @@ function Swirl() {
 				inFocus={inFocus}
 				projects={swirlElementInfo[i].projects}
 				number={i}
+				screenWidth={screenWidth}
 				onLogoClick={onLogoClick}
 			/>
 		);
@@ -134,24 +151,25 @@ function Swirl() {
 					{swirlElements}
 				</div>
 				<div
-					className="position-fixed text-dark"
-					style={{top: "5px", left: "10px", fontFamily: "Bungee Shade"}}
+					className="position-fixed w-100 text-dark text-center"
+					style={{
+						top: "5px",
+						fontFamily: "Bungee Shade"
+					}}
 				>
 					<h1>
 						<a href="https://github.com/JamesNarayanan">James Narayanan</a>
 					</h1>
 				</div>
 				<div
-					className="position-fixed text-dark"
+					className="position-fixed w-100 text-dark text-center"
 					style={{
 						bottom: "5px",
-						left: "50vw",
-						transform: "translate(-50%, 0)",
 						transition: "0.25s",
 						opacity: scrollY < 500 ? 1 : 0
 					}}
 				>
-					<h2>Scroll down for more!</h2>
+					<h3>Scroll down for more!</h3>
 				</div>
 			</div>
 		</>

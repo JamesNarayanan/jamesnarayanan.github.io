@@ -1,6 +1,11 @@
 import React from "react";
 
 function SwirlElement(props) {
+	var iconWidth = 300;
+	if (props.screenWidth <= 600) iconWidth = props.screenWidth / 2.5;
+	else if (props.screenWidth <= 1200) iconWidth = props.screenWidth / 4;
+	iconWidth = iconWidth - iconWidth * (1 - props.opacity) * 0.9;
+
 	return (
 		<>
 			<img
@@ -11,7 +16,7 @@ function SwirlElement(props) {
 				style={{
 					left: props.left,
 					top: props.top,
-					width: "250px",
+					width: iconWidth + "px",
 					opacity: props.opacity,
 					display: props.opacity > 0 ? "initial" : "none",
 					transform: "translate(-50%, -50%)",
@@ -19,26 +24,26 @@ function SwirlElement(props) {
 				}}
 			/>
 			{props.inFocus && (
-				<>
+				<div
+					className="position-fixed text-center"
+					style={{
+						top: "50vh",
+						left: "50vw",
+						width: "90vw",
+						transform: "translate(-50%, 0)"
+					}}
+				>
 					<h1
-						className="position-fixed"
 						style={{
-							left: "50vw",
-							top: "50vh",
-							fontSize: "4rem",
-							transform: "translate(-50%, -50%)",
+							fontSize: "3.5rem",
 							color: "black"
 						}}
 					>
 						{props.name}
 					</h1>
 					<div
-						className="position-fixed text-center"
 						style={{
-							left: "50vw",
-							top: "55vh",
-							fontSize: "2rem",
-							transform: "translate(-50%, 0)"
+							fontSize: "2rem"
 						}}
 					>
 						<u>Projects</u>
@@ -53,7 +58,7 @@ function SwirlElement(props) {
 							})}
 						</div>
 					</div>
-				</>
+				</div>
 			)}
 		</>
 	);
