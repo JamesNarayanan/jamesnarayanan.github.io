@@ -20,7 +20,8 @@ function SwirlElement(props) {
 					opacity: props.opacity,
 					display: props.opacity > 0 ? "initial" : "none",
 					transform: "translate(-50%, -50%)",
-					cursor: "pointer"
+					cursor: "pointer",
+					zIndex: "1"
 				}}
 			/>
 			{props.inFocus && (
