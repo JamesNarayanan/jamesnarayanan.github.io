@@ -1,7 +1,5 @@
-import React from "react";
-
 function SwirlElement(props) {
-	var iconWidth = 300;
+	let iconWidth = 300;
 	if (props.screenWidth <= 600) iconWidth = props.screenWidth / 2.5;
 	else if (props.screenWidth <= 1200) iconWidth = props.screenWidth / 4;
 	iconWidth = iconWidth - iconWidth * (1 - props.opacity) * 0.9;

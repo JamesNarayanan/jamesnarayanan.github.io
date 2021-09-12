@@ -1,9 +1,7 @@
-import React, {useState} from "react";
+import { useState } from "react";
 import "./css/Swirl.css";
 import SwirlElement from "./components/SwirlElement";
 import SwirlElementInfo from "./components/SwirlElementInfo";
-
-import {Helmet} from "react-helmet";
 
 function Swirl() {
 	const [scrollY, setScrollY] = useState(0);
@@ -38,7 +36,7 @@ function Swirl() {
 	if (radii.y > 25) radii.y = 25;
 
 	const onLogoClick = i => {
-		window.scrollTo({top: (pixPerRotate / 2) * i, behavior: "smooth"});
+		window.scrollTo({ top: (pixPerRotate / 2) * i, behavior: "smooth" });
 	};
 	for (let i = 0; i < SwirlElementInfo.length; i++) {
 		let angle = scrollY * (180 / pixPerRotate) + 90 - 90 * i;
@@ -74,22 +72,16 @@ function Swirl() {
 	}
 
 	// Makes background overflow color match background color of the rest of the screen
-	document.documentElement.style.backgroundColor =
-		SwirlElementInfo[currentSwirlEl].color;
+	document.documentElement.style.backgroundColor = SwirlElementInfo[currentSwirlEl].color;
 	// This should be the same length of time as the background transition
 	document.documentElement.style.transition = "0.5s";
 
 	return (
 		<>
-			<Helmet>
-				<title>James Narayanan</title>
-			</Helmet>
 			<div
 				id="longSwirl"
 				style={{
-					height: `calc(${
-						(pixPerRotate / 2) * (swirlElements.length - 1)
-					}px + 100vh)`
+					height: `calc(${(pixPerRotate / 2) * (swirlElements.length - 1)}px + 100vh)`
 				}}
 			>
 				<div

@@ -1,6 +1,5 @@
-import React from "react";
-import "./css/App.css";
 import Swirl from "./Swirl";
+import "./css/App.css";
 
 function App() {
 	return (

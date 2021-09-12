@@ -9,8 +9,8 @@ const SwirlElementInfo = [
 		color: "cyan",
 		icon: reactLogo,
 		projects: [
-			{name: "RoboGuide", link: "https://roboguide.tk"},
-			{name: "Weather", link: "https://jamesnarayanan.github.io/weather"}
+			{ name: "Vower", link: "https://www.vower.org" },
+			{ name: "RoboGuide", link: "https://roboguide.tk" }
 		]
 	},
 	{
@@ -22,7 +22,7 @@ const SwirlElementInfo = [
 				name: "2020 FIRST Robotics Code",
 				link: "https://github.com/Team41Robotics/2020-Robot-Code"
 			},
-			{name: "JavaFX Games", link: "https://github.com/JamesNarayanan/JavaFX"}
+			{ name: "JavaFX Games", link: "https://github.com/JamesNarayanan/JavaFX" }
 		]
 	},
 	{
