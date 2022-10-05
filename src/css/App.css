@@ -1,0 +1,69 @@
+.container {
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.row {
+	width: 100%;
+}
+
+h1.name {
+	/* color: var(--accent); */
+	color: var(--title);
+	font-size: min(15vw, 5rem);
+	font-weight: 700;
+	text-align: center;
+}
+
+.headshot {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.headshot img {
+	border-radius: 50%;
+	width: 100%;
+	max-width: 450px;
+	filter: drop-shadow(0 0 1rem rgba(0, 0, 0, 0.5));
+}
+
+.content {
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+	background-color: rgba(0, 0, 0, 0.15);
+	backdrop-filter: blur(5px);
+	border-radius: 1rem;
+}
+
+.about {
+	font-size: 1.25rem;
+	text-align: center;
+}
+
+.documents {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 2.5rem;
+
+	font-size: 4rem;
+}
+.documents svg {
+	display: block;
+}
+
+.resume-icon,
+.linkedin-icon {
+	color: var(--muted);
+	transition: 0.25s ease;
+}
+.resume-icon:hover,
+.linkedin-icon:hover {
+	color: var(--accent);
+}
+
+.resume {
+	display: none;
+}
